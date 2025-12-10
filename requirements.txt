@@ -1,0 +1,20 @@
+# Requirements for PowerScale OpenAPI Generator
+
+# Core dependencies
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Optional - for YAML output
+pyyaml>=6.0
+
+# Optional - for HTML parsing
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# Optional - for better async support
+aiofiles>=23.2.0
+
+# Development dependencies
+# black>=23.0.0
+# isort>=5.12.0
+# mypy>=1.0.0

@@ -1,0 +1,504 @@
+{
+  "rootFolder": "/Users/sachdevs/Backend/isilon-mcp-server",
+  "analyzedAt": "2025-12-10T08:37:58.932Z",
+  "rootStructure": [
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "size": 1773,
+      "lines": 169
+    },
+    {
+      "name": "Developer portal",
+      "type": "dir"
+    },
+    {
+      "name": "LICENSE",
+      "type": "file",
+      "size": 1087,
+      "lines": 22
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "size": 7143,
+      "lines": 266
+    },
+    {
+      "name": "fetch_openapi_batch.py",
+      "type": "file",
+      "size": 106047,
+      "lines": 2765
+    },
+    {
+      "name": "fetch_powerscale_openapi.py",
+      "type": "file",
+      "size": 45155,
+      "lines": 1136
+    },
+    {
+      "name": "isilon_mcp",
+      "type": "dir"
+    },
+    {
+      "name": "openapi.json",
+      "type": "file",
+      "size": 2888160,
+      "lines": 113998
+    },
+    {
+      "name": "opmanager-mcp-server",
+      "type": "dir"
+    },
+    {
+      "name": "overview.json",
+      "type": "file",
+      "size": 13920,
+      "lines": 472
+    },
+    {
+      "name": "powerscale_9.7_comprehensive_openapi.json",
+      "type": "file",
+      "size": 2888160,
+      "lines": 113998
+    },
+    {
+      "name": "powerscale_9.7_comprehensive_openapi.yaml",
+      "type": "file",
+      "size": 1865111,
+      "lines": 70028
+    },
+    {
+      "name": "powerscale_api_fetch.log",
+      "type": "file",
+      "size": 2734,
+      "lines": 31
+    },
+    {
+      "name": "pyproject.toml",
+      "type": "file",
+      "size": 4399,
+      "lines": 193
+    },
+    {
+      "name": "requirements-mcp.txt",
+      "type": "file",
+      "size": 431,
+      "lines": 23
+    },
+    {
+      "name": "requirements.txt",
+      "type": "file",
+      "size": 339,
+      "lines": 21
+    },
+    {
+      "name": "tests",
+      "type": "dir"
+    },
+    {
+      "name": "venv",
+      "type": "dir"
+    },
+    {
+      "name": "verify_api_coverage.py",
+      "type": "file",
+      "size": 12696,
+      "lines": 380
+    }
+  ],
+  "rootFileSnippets": {
+    "LICENSE": [
+      "MIT License",
+      "",
+      "Copyright (c) 2024 Isilon MCP Server Contributors",
+      "",
+      "Permission is hereby granted, free of charge, to any person obtaining a copy",
+      "of this software and associated documentation files (the \"Software\"), to deal",
+      "in the Software without restriction, including without limitation the rights",
+      "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell",
+      "copies of the Software, and to permit persons to whom the Software is",
+      "furnished to do so, subject to the following conditions:"
+    ],
+    "README.md": [
+      "# Isilon MCP Server",
+      "",
+      "[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)",
+      "[![MCP](https://img.shields.io/badge/MCP-1.0-green.svg)](https://modelcontextprotocol.io/)",
+      "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+      "",
+      "A professional-grade **Model Context Protocol (MCP) server** for Dell PowerScale (Isilon) OneFS API integration. This server enables AI assistants like Claude to interact with PowerScale storage clusters through a comprehensive set of tools covering all 2,400+ API operations.",
+      "",
+      "## Features",
+      ""
+    ],
+    "fetch_openapi_batch.py": [
+      "#!/usr/bin/env python3",
+      "\"\"\"",
+      "PowerScale API 9.7 - Batch OpenAPI Spec Generator",
+      "",
+      "This script fetches ALL endpoints from the Dell Developer Portal for PowerScale API",
+      "version 9.7 in batches and generates a comprehensive OpenAPI 3.0 specification.",
+      "",
+      "It uses the actual Dell API structure discovered from the developer portal.",
+      "",
+      "Usage:"
+    ],
+    "fetch_powerscale_openapi.py": [
+      "#!/usr/bin/env python3",
+      "\"\"\"",
+      "PowerScale API 9.7 OpenAPI Specification Generator",
+      "",
+      "This script fetches all endpoints from the Dell Developer Portal for PowerScale API",
+      "version 9.7 and generates a professional-grade OpenAPI 3.0 specification.",
+      "",
+      "Usage:",
+      "python fetch_powerscale_openapi.py [--output openapi.json] [--concurrency 5]",
+      ""
+    ],
+    "openapi.json": [
+      "{",
+      "\"openapi\": \"3.0.3\",",
+      "\"info\": {",
+      "\"title\": \"Dell PowerScale (Isilon) OneFS API\",",
+      "\"description\": \"# Dell PowerScale OneFS REST API\\n\\nThis OpenAPI 3.0 specification describes the Dell PowerScale (formerly Isilon) OneFS REST API version 9.7.\\n\\n## Overview\\n\\nPowerScale OneFS API provides programmatic access to:\\n- **Cluster Management**: Configuration, nodes, identity\\n- **Protocols**: NFS exports, SMB shares, HDFS, S3\\n- **File System**: Namespace operations, ACLs, quotas\\n- **Data Protection**: Snapshots, SyncIQ replication, NDMP\\n- **Security**: Authentication, authorization, audit\\n- **Storage**: Pools, tiers, CloudPools\\n- **Monitoring**: Statistics, events, jobs\\n\\n## Authentication\\n\\nAll API requests require HTTP Basic Authentication with cluster credentials.\\n\\n## Base URLs\\n\\n- Platform API: `https://<cluster>:8080/platform/`\\n- Namespace API: `https://<cluster>:8080/namespace/`\\n\\n## Common Parameters\\n\\n- `zone`: Access zone context for operations\\n- `resume`: Pagination token for large result sets\\n- `limit`: Maximum items to return (default varies by endpoint)\\n- `sort`: Sort field\\n- `dir`: Sort direction (ASC/DESC)\\n\",",
+      "\"version\": \"9.7.0\",",
+      "\"contact\": {",
+      "\"name\": \"Dell Technologies Support\",",
+      "\"url\": \"https://www.dell.com/support/kbdoc/en-us/000020423/powerscale-powerscale-onefs-platform-api-documentation\"",
+      "},"
+    ],
+    "overview.json": [
+      "{",
+      "\"rootFolder\": \"/Users/sachdevs/Backend/isilon-mcp-server\",",
+      "\"analyzedAt\": \"2025-12-10T08:34:42.802Z\",",
+      "\"rootStructure\": [",
+      "{",
+      "\"name\": \".gitignore\",",
+      "\"type\": \"file\",",
+      "\"size\": 1773,",
+      "\"lines\": 169",
+      "},"
+    ],
+    "powerscale_9.7_comprehensive_openapi.json": [
+      "{",
+      "\"openapi\": \"3.0.3\",",
+      "\"info\": {",
+      "\"title\": \"Dell PowerScale (Isilon) OneFS API\",",
+      "\"description\": \"# Dell PowerScale OneFS REST API\\n\\nThis OpenAPI 3.0 specification describes the Dell PowerScale (formerly Isilon) OneFS REST API version 9.7.\\n\\n## Overview\\n\\nPowerScale OneFS API provides programmatic access to:\\n- **Cluster Management**: Configuration, nodes, identity\\n- **Protocols**: NFS exports, SMB shares, HDFS, S3\\n- **File System**: Namespace operations, ACLs, quotas\\n- **Data Protection**: Snapshots, SyncIQ replication, NDMP\\n- **Security**: Authentication, authorization, audit\\n- **Storage**: Pools, tiers, CloudPools\\n- **Monitoring**: Statistics, events, jobs\\n\\n## Authentication\\n\\nAll API requests require HTTP Basic Authentication with cluster credentials.\\n\\n## Base URLs\\n\\n- Platform API: `https://<cluster>:8080/platform/`\\n- Namespace API: `https://<cluster>:8080/namespace/`\\n\\n## Common Parameters\\n\\n- `zone`: Access zone context for operations\\n- `resume`: Pagination token for large result sets\\n- `limit`: Maximum items to return (default varies by endpoint)\\n- `sort`: Sort field\\n- `dir`: Sort direction (ASC/DESC)\\n\",",
+      "\"version\": \"9.7.0\",",
+      "\"contact\": {",
+      "\"name\": \"Dell Technologies Support\",",
+      "\"url\": \"https://www.dell.com/support/kbdoc/en-us/000020423/powerscale-powerscale-onefs-platform-api-documentation\"",
+      "},"
+    ],
+    "powerscale_9.7_comprehensive_openapi.yaml": [
+      "openapi: 3.0.3",
+      "info:",
+      "title: Dell PowerScale (Isilon) OneFS API",
+      "description: '# Dell PowerScale OneFS REST API",
+      "",
+      "",
+      "This OpenAPI 3.0 specification describes the Dell PowerScale (formerly Isilon)",
+      "OneFS REST API version 9.7.",
+      "",
+      ""
+    ],
+    "powerscale_api_fetch.log": [
+      "2025-12-10 13:00:38,422 - INFO - ============================================================",
+      "2025-12-10 13:00:38,422 - INFO - PowerScale API 9.7 OpenAPI Specification Generator",
+      "2025-12-10 13:00:38,422 - INFO - ============================================================",
+      "2025-12-10 13:00:38,422 - INFO - Generating comprehensive specification from known endpoints...",
+      "2025-12-10 13:00:38,430 - INFO - ============================================================",
+      "2025-12-10 13:00:38,430 - INFO - OpenAPI specification generated successfully!",
+      "2025-12-10 13:00:38,430 - INFO - Output file: /Users/sachdevs/Backend/isilon-mcp-server/powerscale_9.7_openapi.json",
+      "2025-12-10 13:00:38,430 - INFO - Total paths: 72",
+      "2025-12-10 13:00:38,430 - INFO - Total operations: 106",
+      "2025-12-10 13:00:38,430 - INFO - Tags: 18"
+    ],
+    "pyproject.toml": [
+      "[build-system]",
+      "requires = [\"hatchling\"]",
+      "build-backend = \"hatchling.build\"",
+      "",
+      "[project]",
+      "name = \"isilon-mcp-server\"",
+      "version = \"1.0.0\"",
+      "description = \"Model Context Protocol (MCP) server for Dell PowerScale (Isilon) OneFS API integration\"",
+      "readme = \"README.md\"",
+      "license = { text = \"MIT\" }"
+    ],
+    "requirements-mcp.txt": [
+      "# Isilon MCP Server Requirements",
+      "# Install with: pip install -r requirements.txt",
+      "",
+      "# Core MCP Protocol",
+      "mcp>=1.0.0",
+      "",
+      "# HTTP Client",
+      "httpx>=0.25.0",
+      "",
+      "# Configuration and Validation"
+    ],
+    "requirements.txt": [
+      "# Requirements for PowerScale OpenAPI Generator",
+      "",
+      "# Core dependencies",
+      "aiohttp>=3.9.0",
+      "requests>=2.31.0",
+      "",
+      "# Optional - for YAML output",
+      "pyyaml>=6.0",
+      "",
+      "# Optional - for HTML parsing"
+    ],
+    "verify_api_coverage.py": [
+      "#!/usr/bin/env python3",
+      "\"\"\"",
+      "PowerScale API Coverage Verification Tool",
+      "",
+      "This script fetches the actual API structure from Dell Developer Portal",
+      "and compares it against our generated OpenAPI specification to verify",
+      "full coverage.",
+      "",
+      "Usage:",
+      "python verify_api_coverage.py [--spec powerscale_9.7_comprehensive_openapi.json]"
+    ]
+  },
+  "importantFolders": [
+    {
+      "path": "opmanager-mcp-server",
+      "category": "backend",
+      "fileCount": 41,
+      "primaryLanguage": "Python"
+    },
+    {
+      "path": "opmanager-mcp-server/tests",
+      "category": "tests",
+      "fileCount": 7,
+      "primaryLanguage": "Python"
+    },
+    {
+      "path": "tests",
+      "category": "tests",
+      "fileCount": 5,
+      "primaryLanguage": "Python"
+    }
+  ],
+  "readmeParagraphs": {
+    "opmanager-mcp-server": "# OpManager MCP Server",
+    "root": "# Isilon MCP Server"
+  },
+  "totals": {
+    "numFiles": 72,
+    "numDirs": 16,
+    "totalSizeBytes": 8736429,
+    "totalLinesOfCode": 12028
+  },
+  "fileCategories": {
+    "other": 13,
+    "documentation": 14,
+    "source": 35,
+    "config": 10
+  },
+  "linesOfCodePerLanguage": {
+    "Python": 11970,
+    "Shell": 58
+  },
+  "filesPerLanguage": {
+    "Python": 34,
+    "Shell": 1
+  },
+  "projectTypes": [
+    "Python",
+    "Python (requirements)"
+  ],
+  "frameworks": [],
+  "entryPoints": [
+    "fetch_openapi_batch.py",
+    "fetch_powerscale_openapi.py",
+    "opmanager-mcp-server/generate_openapi.py",
+    "opmanager-mcp-server/test-docker.sh",
+    "verify_api_coverage.py"
+  ],
+  "ciCdTools": [
+    "Docker"
+  ],
+  "packageManagers": [
+    "pip"
+  ],
+  "topLevelDirectories": [
+    {
+      "name": "opmanager-mcp-server",
+      "numFiles": 41,
+      "totalLoc": 4173,
+      "dominantLanguage": "Python"
+    },
+    {
+      "name": "isilon_mcp",
+      "numFiles": 9,
+      "totalLoc": 2836,
+      "dominantLanguage": "Python"
+    },
+    {
+      "name": "tests",
+      "numFiles": 5,
+      "totalLoc": 738,
+      "dominantLanguage": "Python"
+    },
+    {
+      "name": "Developer portal",
+      "numFiles": 1,
+      "totalLoc": 0
+    }
+  ],
+  "detailedDirectories": [
+    {
+      "path": "opmanager-mcp-server",
+      "name": "opmanager-mcp-server",
+      "level": 1,
+      "numFiles": 41,
+      "totalLoc": 4173,
+      "dominantLanguage": "Python",
+      "category": "General",
+      "description": "# OpManager MCP Server",
+      "subdirectories": [
+        {
+          "path": "opmanager-mcp-server/opmanager_mcp",
+          "name": "opmanager_mcp",
+          "level": 2,
+          "numFiles": 9,
+          "totalLoc": 2673,
+          "dominantLanguage": "Python",
+          "category": "General",
+          "description": "General module with 9 files (Python)",
+          "subdirectories": []
+        },
+        {
+          "path": "opmanager-mcp-server/tests",
+          "name": "tests",
+          "level": 2,
+          "numFiles": 7,
+          "totalLoc": 883,
+          "dominantLanguage": "Python",
+          "category": "Testing",
+          "description": "Testing module with 7 files (Python)",
+          "subdirectories": []
+        }
+      ]
+    },
+    {
+      "path": "isilon_mcp",
+      "name": "isilon_mcp",
+      "level": 1,
+      "numFiles": 9,
+      "totalLoc": 2836,
+      "dominantLanguage": "Python",
+      "category": "General",
+      "description": "General module with 9 files (Python)",
+      "subdirectories": []
+    },
+    {
+      "path": "tests",
+      "name": "tests",
+      "level": 1,
+      "numFiles": 5,
+      "totalLoc": 738,
+      "dominantLanguage": "Python",
+      "category": "Testing",
+      "description": "Testing module with 5 files (Python)",
+      "subdirectories": []
+    },
+    {
+      "path": "Developer portal",
+      "name": "Developer portal",
+      "level": 1,
+      "numFiles": 1,
+      "totalLoc": 0,
+      "category": "General",
+      "description": "General module with 1 files",
+      "subdirectories": []
+    }
+  ],
+  "architecturalInsights": {
+    "coreApplications": [],
+    "entryPointDetails": [
+      {
+        "path": "../../../../fetch_openapi_batch.py",
+        "type": "Unknown",
+        "description": ""
+      },
+      {
+        "path": "../../../../fetch_powerscale_openapi.py",
+        "type": "Unknown",
+        "description": ""
+      },
+      {
+        "path": "../../../../opmanager-mcp-server/generate_openapi.py",
+        "type": "Unknown",
+        "description": ""
+      },
+      {
+        "path": "../../../../opmanager-mcp-server/test-docker.sh",
+        "type": "Unknown",
+        "description": ""
+      },
+      {
+        "path": "../../../../verify_api_coverage.py",
+        "type": "Unknown",
+        "description": ""
+      }
+    ],
+    "serviceArchitecture": {
+      "microservices": [],
+      "monoliths": [],
+      "libraries": []
+    },
+    "layeredArchitecture": {
+      "presentation": [],
+      "business": [],
+      "data": [],
+      "infrastructure": []
+    }
+  },
+  "largeFiles": [
+    {
+      "path": "openapi.json",
+      "sizeMb": 2.75
+    },
+    {
+      "path": "powerscale_9.7_comprehensive_openapi.json",
+      "sizeMb": 2.75
+    },
+    {
+      "path": "powerscale_9.7_comprehensive_openapi.yaml",
+      "sizeMb": 1.78
+    }
+  ],
+  "dependencies": {
+    "production": [
+      "aiohttp",
+      "requests",
+      "pyyaml",
+      "beautifulsoup4",
+      "lxml",
+      "aiofiles"
+    ],
+    "development": [],
+    "total": 6
+  },
+  "complexity": {
+    "averageFileSize": 167.05555555555554,
+    "maxFileSize": 28835.84,
+    "nestedDepth": 0,
+    "estimatedComplexity": "medium"
+  },
+  "gitRepo": {
+    "firstCommitDate": "unknown",
+    "totalCommits": 0,
+    "numContributors": 0,
+    "currentBranch": "main",
+    "remoteUrls": []
+  },
+  "license": "MIT"
+}

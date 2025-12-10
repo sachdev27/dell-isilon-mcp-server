@@ -1,0 +1,22 @@
+# Isilon MCP Server Requirements
+# Install with: pip install -r requirements.txt
+
+# Core MCP Protocol
+mcp>=1.0.0
+
+# HTTP Client
+httpx>=0.25.0
+
+# Configuration and Validation
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
+
+# YAML Support for OpenAPI specs
+pyyaml>=6.0
+
+# Optional: HTTP Server for n8n integration
+# Uncomment if you need HTTP/SSE transport
+# starlette>=0.32.0
+# uvicorn>=0.24.0
+# sse-starlette>=1.6.0
