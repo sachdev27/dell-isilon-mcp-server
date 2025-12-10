@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  isilon-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: isilon-mcp-server
+    ports:
+      - "8000:8000"
+    environment:
+      - LOCAL_OPENAPI_SPEC_PATH=/app/openapi.json
+      - LOG_LEVEL=INFO
+      - HTTP_SERVER_PORT=8000
+      - ALLOWED_HTTP_METHODS=GET
+    volumes:
+      # Mount OpenAPI spec (optional, already copied in Dockerfile)
+      - ./openapi_v18_only.json:/app/openapi.json:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - isilon-mcp-network
+
+  # Optional: Run in stdio mode for Claude Desktop integration
+  isilon-mcp-stdio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: isilon-mcp-stdio
+    environment:
+      - LOCAL_OPENAPI_SPEC_PATH=/app/openapi.json
+      - LOG_LEVEL=INFO
+      - ALLOWED_HTTP_METHODS=GET
+    volumes:
+      - ./openapi_v18_only.json:/app/openapi.json:ro
+    stdin_open: true
+    tty: true
+    command: ["python", "-m", "isilon_mcp"]
+    profiles:
+      - stdio
+    networks:
+      - isilon-mcp-network
+
+networks:
+  isilon-mcp-network:
+    driver: bridge
