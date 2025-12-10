@@ -1,10 +1,12 @@
 # Isilon MCP Server
 
+[![PyPI version](https://badge.fury.io/py/isilon-mcp-server.svg)](https://badge.fury.io/py/isilon-mcp-server)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![MCP](https://img.shields.io/badge/MCP-1.0-green.svg)](https://modelcontextprotocol.io/)
+[![Tests](https://github.com/sachdev27/isilon-mcp-server/workflows/Tests/badge.svg)](https://github.com/sachdev27/isilon-mcp-server/actions)
+[![codecov](https://codecov.io/gh/sachdev27/isilon-mcp-server/branch/main/graph/badge.svg)](https://codecov.io/gh/sachdev27/isilon-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A professional-grade **Model Context Protocol (MCP) server** for Dell PowerScale (Isilon) OneFS API integration. This server enables AI assistants like Claude to interact with PowerScale storage clusters through a comprehensive set of tools covering all 2,400+ API operations.
+A professional-grade **Model Context Protocol (MCP) server** for Dell PowerScale (Isilon) OneFS API integration. This server enables AI assistants like Claude to interact with PowerScale storage clusters through a comprehensive set of tools generated from the OneFS 9.7 REST API specification.
 
 ## Features
 
@@ -43,6 +45,18 @@ A professional-grade **Model Context Protocol (MCP) server** for Dell PowerScale
 - API credentials with appropriate permissions
 
 ### Installation
+
+#### From PyPI (Recommended)
+
+```bash
+# Install the package
+pip install isilon-mcp-server
+
+# Or install with HTTP server support for n8n
+pip install "isilon-mcp-server[http]"
+```
+
+#### From Source
 
 ```bash
 # Clone the repository

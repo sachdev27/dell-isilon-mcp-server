@@ -47,6 +47,17 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+cover/
+
+# Environment variables
+.env
+.env.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # Translations
 *.mo

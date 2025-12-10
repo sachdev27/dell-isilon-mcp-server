@@ -5,14 +5,14 @@ build-backend = "hatchling.build"
 [project]
 name = "isilon-mcp-server"
 version = "1.0.0"
-description = "Model Context Protocol (MCP) server for Dell PowerScale (Isilon) OneFS API integration"
+description = "Model Context Protocol (MCP) server for Dell PowerScale (Isilon) OneFS 9.7 REST API integration - enables AI assistants to interact with PowerScale storage clusters"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-    { name = "Isilon MCP Server Contributors" }
+    { name = "Sachin Sachdeva", email = "sachdev27@users.noreply.github.com" }
 ]
 maintainers = [
-    { name = "Isilon MCP Server Contributors" }
+    { name = "Sachin Sachdeva", email = "sachdev27@users.noreply.github.com" }
 ]
 keywords = [
     "mcp",
@@ -27,7 +27,9 @@ keywords = [
     "automation",
     "llm",
     "ai",
-    "claude"
+    "claude",
+    "rest-api",
+    "storage-management",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -39,9 +41,12 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: System :: Systems Administration",
     "Topic :: System :: Filesystems",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Communications",
+    "Framework :: AsyncIO",
     "Typing :: Typed",
 ]
 requires-python = ">=3.10"
@@ -97,9 +102,11 @@ packages = ["isilon_mcp"]
 [tool.hatch.build.targets.sdist]
 include = [
     "/isilon_mcp",
-    "/powerscale_9.7_comprehensive_openapi.json",
+    "/openapi_v18_only.json",
     "/README.md",
     "/LICENSE",
+    "/CHANGELOG.md",
+    "/CONTRIBUTING.md",
 ]
 
 [tool.black]
