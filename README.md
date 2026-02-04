@@ -40,6 +40,7 @@ A professional-grade **Model Context Protocol (MCP) server** for Dell PowerScale
 
 ### Prerequisites
 
+- Papi Schema - https://github.com/Isilon/isilon_sdk/tree/main/papi_schemas
 - Python 3.10 or higher
 - Access to a Dell PowerScale cluster with REST API enabled
 - API credentials with appropriate permissions
