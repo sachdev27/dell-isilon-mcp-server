@@ -37,7 +37,7 @@ services:
       - LOG_LEVEL=INFO
       - ALLOWED_HTTP_METHODS=GET
     volumes:
-      - ./openapi_v18_only.json:/app/openapi.json:ro
+      - ./openapi.json:/app/openapi.json:ro
     stdin_open: true
     tty: true
     command: ["python", "-m", "isilon_mcp"]

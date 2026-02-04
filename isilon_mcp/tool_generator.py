@@ -400,6 +400,80 @@ class ToolGenerator:
             if param_required and param_name not in required:
                 required.append(param_name)
 
+        # If there's a requestBody (for POST/PUT/PATCH), merge its schema properties
+        request_body = operation.get("requestBody") or {}
+        if request_body:
+            # Support application/json and first available content type
+            content = request_body.get("content", {})
+            media_schema = None
+            if "application/json" in content:
+                media_schema = content["application/json"].get("schema")
+            elif content:
+                # Take the first media type's schema
+                first_media = next(iter(content.values()))
+                media_schema = first_media.get("schema")
+
+            if media_schema:
+                # Merge schema properties into top-level input properties
+                def _merge_schema(prefix: str, schema: dict[str, Any]):
+                    sch_type = schema.get("type")
+                    if sch_type == "object":
+                        for k, v in schema.get("properties", {}).items():
+                            prop_name = f"{prefix}{k}" if prefix else k
+                            # Avoid overwriting existing properties
+                            if prop_name in properties:
+                                continue
+
+                            prop_entry: dict[str, Any] = {}
+                            v_type = v.get("type", "string")
+                            prop_entry["type"] = v_type
+                            if "description" in v:
+                                prop_entry["description"] = v["description"]
+                            else:
+                                prop_entry["description"] = f"body parameter: {k}"
+
+                            if "enum" in v:
+                                prop_entry["enum"] = v["enum"][:MAX_ENUM_VALUES]
+                            if "default" in v:
+                                prop_entry["default"] = v["default"]
+
+                            # Nested object -> represent as object with properties
+                            if v_type == "object" and "properties" in v:
+                                prop_entry["type"] = "object"
+                                prop_entry["properties"] = {}
+                                for nk, nv in v["properties"].items():
+                                    prop_entry["properties"][nk] = {
+                                        "type": nv.get("type", "string"),
+                                        "description": nv.get("description", ""),
+                                    }
+
+                            properties[prop_name] = prop_entry
+
+                        # Required fields
+                        for req_field in schema.get("required", []):
+                            if req_field not in required:
+                                required.append(req_field)
+                    else:
+                        # For non-object bodies, expose as `body` field
+                        if "body" not in properties:
+                            properties["body"] = {
+                                "type": sch_type or "string",
+                                "description": "Request body",
+                            }
+
+                # If schema uses $ref or wraps object in allOf/oneOf, try to handle common patterns
+                if "allOf" in media_schema and isinstance(media_schema["allOf"], list):
+                    # Merge all object parts
+                    merged = {"type": "object", "properties": {}, "required": []}
+                    for part in media_schema["allOf"]:
+                        if "properties" in part:
+                            merged["properties"].update(part.get("properties", {}))
+                        if "required" in part:
+                            merged.setdefault("required", []).extend(part.get("required", []))
+                    _merge_schema("", merged)
+                else:
+                    _merge_schema("", media_schema)
+
         return {
             "type": "object",
             "properties": properties,

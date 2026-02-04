@@ -34,7 +34,7 @@ COPY --from=builder /root/.local /home/appuser/.local
 
 # Copy application files
 COPY isilon_mcp/ ./isilon_mcp/
-COPY openapi_v18_only.json ./openapi.json
+COPY openapi.json ./openapi.json
 
 # Set environment variables
 ENV PATH=/home/appuser/.local/bin:$PATH

@@ -62,7 +62,7 @@ tests/
 !LICENSE
 
 # Keep only necessary OpenAPI file
-openapi.json
+!openapi.json
 !openapi_v18_only.json
 
 # Documentation
